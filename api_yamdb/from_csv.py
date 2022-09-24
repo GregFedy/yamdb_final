@@ -1,6 +1,6 @@
 import csv
-import sqlite3
 import os
+import sqlite3
 
 DB_DIR = os.path.join(os.getcwd(), 'db.sqlite3')
 CSV_DIR = os.path.join(os.path.join(os.getcwd(), 'static'), 'data')

@@ -1,4 +1,5 @@
 import uuid
+
 from api_yamdb.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
 from rest_framework import serializers
@@ -22,8 +23,7 @@ class UserSerializer(serializers.ModelSerializer):
         if validated_data['username'] == 'me':
             raise ValidationError("Error! username can't be 'me'!")
         else:
-            user = CustomUser.objects.create(**validated_data)
-            return user
+            return CustomUser.objects.create(**validated_data)
 
 
 class GetMyselfSerializer(serializers.ModelSerializer):

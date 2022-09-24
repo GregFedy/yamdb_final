@@ -2,7 +2,6 @@ from django.db.models import Avg
 from rest_framework import serializers
 from rest_framework.generics import get_object_or_404
 from rest_framework.relations import SlugRelatedField
-
 from reviews.models import Category, Comment, CustomUser, Genre, Review, Title
 
 
@@ -71,8 +70,9 @@ class ReviewSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         title_id = request.parser_context['kwargs']['title_id']
         title = get_object_or_404(Title, id=title_id)
-        if self.context.get('request').method == 'POST' \
-                and title.reviews.filter(author=request.user).exists():
+        if self.context.get(
+            'request').method == 'POST' and title.reviews.filter(
+                author=request.user).exists():
             raise serializers.ValidationError(
                 'Вы уже обозревали это произведение')
         return data
