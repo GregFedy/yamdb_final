@@ -149,4 +149,4 @@ docker system prune
 - [GregFedy](https://github.com/GregFedy)
 - [s-nikename](https://github.com/s-nikename)
 
-[example workflow](https://github.com/GregFedy/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
+[![Django-app workflow](https://github.com/GregFedy/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)](https://github.com/GregFedy/yamdb_final/actions/workflows/yamdb_workflow.yml)
