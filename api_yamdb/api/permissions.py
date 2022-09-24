@@ -20,8 +20,8 @@ class IsAuthorOrAdminOrModerator(permissions.BasePermission):
 
 
 class AdminOnlyOrRead(permissions.BasePermission):
-    """Создание, изменение и удаление произведений (Title), категорий (Category)
-    и жанров (Genre) доступно только администраторам."""
+    """Создание, изменение и удаление произведений (Title),
+    категорий (Category) и жанров (Genre) доступно только администраторам."""
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
             return True
