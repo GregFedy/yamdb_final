@@ -1,9 +1,10 @@
 import uuid
 
-from api_yamdb.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
+
+from api_yamdb.settings import EMAIL_HOST_USER
 
 from .models import CustomUser
 
@@ -56,10 +57,6 @@ class SignupSerializer(serializers.ModelSerializer):
             if check_email:
                 raise ValidationError("User with this email is already exists")
             code = str(uuid.uuid4())
-            user = CustomUser.objects.create(
-                username=validated_data['username'],
-                email=validated_data['email'],
-                confirmation_code=code)
             send_mail(
                 'Confirmation code',
                 code,
@@ -67,8 +64,13 @@ class SignupSerializer(serializers.ModelSerializer):
                 [validated_data['email']],
                 fail_silently=False
             )
-            return user
-        elif check_user:
+            CustomUser.objects.create(
+                username=validated_data['username'],
+                email=validated_data['email'],
+                confirmation_code=code
+            )
+            return None
+        else:
             check_all_fields = CustomUser.objects.filter(
                 username=validated_data['username']).filter(
                     email=validated_data['email']).exists()
