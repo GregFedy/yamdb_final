@@ -4,7 +4,7 @@ services:
   db:
     image: postgres:13.0-alpine
     volumes:
-      - /var/lib/postgresql/database/
+      - database:/var/lib/postgresql/base/
     env_file:
       - ./.env
 # comment
@@ -37,3 +37,4 @@ volumes:
 
   static_value:
   media_value:
+  database:
