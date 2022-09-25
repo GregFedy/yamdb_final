@@ -7,7 +7,7 @@ services:
       - /var/lib/postgresql/database/
     env_file:
       - ./.env
-
+# comment
   web:
     image: fursy/api_yamdb:latest
     restart: always
